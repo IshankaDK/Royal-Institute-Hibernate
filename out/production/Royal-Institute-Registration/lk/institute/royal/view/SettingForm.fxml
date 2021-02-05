@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="main" prefHeight="540.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.institute.royal.controller.SettingFormController">
+   <children>
+      <Label layoutX="42.0" layoutY="32.0" prefHeight="53.0" prefWidth="217.0" text="Settings" textFill="#34495e">
+         <font>
+            <Font name="Bauhaus 93" size="34.0" />
+         </font>
+      </Label>
+      <Label layoutX="227.0" layoutY="116.0" text="Change Your Password" textFill="#ff3434">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Separator layoutX="27.0" layoutY="93.0" prefHeight="3.0" prefWidth="724.0" />
+      <TextField fx:id="txtUserName" layoutX="316.0" layoutY="204.0" prefHeight="53.0" prefWidth="370.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="98.0" layoutY="204.0" prefHeight="53.0" prefWidth="183.0" text="User Name">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtOldPassword" layoutX="316.0" layoutY="281.0" prefHeight="53.0" prefWidth="370.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="98.0" layoutY="281.0" prefHeight="53.0" prefWidth="183.0" text="Old Password">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNewPassword" layoutX="316.0" layoutY="356.0" prefHeight="53.0" prefWidth="370.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="83.0" layoutY="356.0" prefHeight="53.0" prefWidth="198.0" text="New Password">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="514.0" layoutY="427.0" onAction="#btnSaveOnAction" prefHeight="53.0" prefWidth="158.0" style="-fx-background-color: #d63031;" text="Save Changes" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>
