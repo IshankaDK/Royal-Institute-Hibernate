@@ -1,4 +1,4 @@
-package lk.institute.royal;
+package lk.royal;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

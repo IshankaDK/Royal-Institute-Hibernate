@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="main" prefHeight="540.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.institute.royal.controller.CourseFormController">
+<AnchorPane fx:id="main" prefHeight="540.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.royal.controller.CourseFormController">
    <children>
       <TableView fx:id="tblCourse" layoutX="41.0" layoutY="258.0" prefHeight="225.0" prefWidth="674.0">
          <columns>

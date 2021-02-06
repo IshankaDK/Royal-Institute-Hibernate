@@ -1,4 +1,4 @@
-package lk.institute.royal.controller;
+package lk.royal.controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -34,7 +34,7 @@ public class RegisterUserFormController {
     @FXML
     void hprLoginOnAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) root.getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/lk/institute/royal/view/LoginForm.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/lk/royal/view/LoginForm.fxml"))));
 
     }
 

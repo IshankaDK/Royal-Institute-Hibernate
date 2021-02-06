@@ -1,4 +1,4 @@
-package lk.institute.royal.controller;
+package lk.royal.controller;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class DashBoardFormController {
     public AnchorPane root;
@@ -75,7 +74,7 @@ public class DashBoardFormController {
     }
     private void initUI(String location) throws IOException {
         this.main.getChildren().clear();
-        this.main.getChildren().add(FXMLLoader.load(this.getClass().getResource("/lk/institute/royal/view/"+location)));
+        this.main.getChildren().add(FXMLLoader.load(this.getClass().getResource("/lk/royal/view/" +location)));
     }
 
     public void btnLogoutOnAction(ActionEvent actionEvent) throws IOException {

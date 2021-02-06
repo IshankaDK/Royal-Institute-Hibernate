@@ -1,4 +1,4 @@
-package lk.institute.royal.controller;
+package lk.royal.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
 public class StudentFormController {
+
     @FXML
     private AnchorPane main;
 
@@ -58,10 +59,40 @@ public class StudentFormController {
     private JFXButton btnSave;
 
     @FXML
+    private JFXButton btnDelete;
+
+    @FXML
     private JFXButton btnNew;
+
+//    StudentBOImpl studentBO = BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
+
+    public void initialize() {
+
+    }
+
+
 
     @FXML
     void btnNewOnAction(ActionEvent event) {
+        txtId.clear();
+        txtName.clear();
+        txtAddress.clear();
+        txtContact.clear();
+        txtGender.clear();
+        txtDob.clear();
+        tblStudent.getSelectionModel().clearSelection();
+        txtId.setDisable(false);
+        txtName.setDisable(false);
+        txtAddress.setDisable(false);
+        txtContact.setDisable(false);
+        txtGender.setDisable(false);
+        txtDob.setDisable(false);
+//        try {
+//            String s = studentBO.newStudentId();
+//            txtId.setText(s);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -73,5 +104,9 @@ public class StudentFormController {
     @FXML
     void txtIdOnAction(ActionEvent event) {
 
+    }
+
+    @FXML
+    void btnDeleteOnAction(ActionEvent actionEvent) {
     }
 }
