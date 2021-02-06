@@ -1,6 +1,6 @@
-package lk.royal.dao;
+package lk.royal.project.dao;
 
-import lk.royal.dao.custom.impl.StudentDAOImpl;
+import lk.royal.project.dao.custom.impl.StudentDAOImpl;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;

@@ -1,4 +1,4 @@
-package lk.royal.bo;
+package lk.royal.project.bo;
 
 public enum BOType {
     STUDENT, COURSE,

@@ -1,8 +1,8 @@
-package lk.royal.dao.custom.impl;
+package lk.royal.project.dao.custom.impl;
 
-import lk.royal.dao.custom.StudentDAO;
-import lk.royal.entity.Student;
-import lk.royal.factory.FactoryConfiguration;
+import lk.royal.project.dao.custom.StudentDAO;
+import lk.royal.project.entity.Student;
+import lk.royal.project.factory.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;

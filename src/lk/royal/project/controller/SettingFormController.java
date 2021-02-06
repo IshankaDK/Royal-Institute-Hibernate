@@ -1,4 +1,4 @@
-package lk.royal.controller;
+package lk.royal.project.controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;

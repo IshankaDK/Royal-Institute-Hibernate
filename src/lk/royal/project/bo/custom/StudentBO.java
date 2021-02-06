@@ -1,7 +1,7 @@
-package lk.royal.bo.custom;
+package lk.royal.project.bo.custom;
 
-import lk.royal.bo.SuperBO;
-import lk.royal.dto.StudentDTO;
+import lk.royal.project.bo.SuperBO;
+import lk.royal.project.dto.StudentDTO;
 
 import java.util.List;
 

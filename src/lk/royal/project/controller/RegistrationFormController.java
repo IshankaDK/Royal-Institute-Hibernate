@@ -1,4 +1,4 @@
-package lk.royal.controller;
+package lk.royal.project.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;

@@ -1,4 +1,4 @@
-package lk.royal.controller;
+package lk.royal.project.controller;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;

@@ -1,4 +1,4 @@
-package lk.royal.dto;
+package lk.royal.project.dto;
 
 public class StudentDTO {
     private String id;

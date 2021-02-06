@@ -1,4 +1,4 @@
-package lk.royal.controller;
+package lk.royal.project.controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -38,7 +38,7 @@ public class LoginFormController {
         Stage stage = (Stage) root.getScene().getWindow();
         stage.setTitle("DashBoard Form");
         stage.centerOnScreen();
-        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/lk/royal/view/DashBoardForm.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/lk/royal/project/view/DashBoardForm.fxml"))));
 
     }
 
@@ -47,7 +47,7 @@ public class LoginFormController {
         Stage stage = (Stage) root.getScene().getWindow();
         stage.setTitle("Register Form");
         stage.centerOnScreen();
-        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/lk/royal/view/RegisterUserForm.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/lk/royal/project/view/RegisterUserForm.fxml"))));
 
     }
 

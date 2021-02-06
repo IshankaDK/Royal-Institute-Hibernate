@@ -1,6 +1,6 @@
-package lk.royal.bo;
+package lk.royal.project.bo;
 
-import lk.royal.bo.custom.impl.StudentBOImpl;
+import lk.royal.project.bo.custom.impl.StudentBOImpl;
 
 public class BOFactory {
     private static BOFactory boFactory;

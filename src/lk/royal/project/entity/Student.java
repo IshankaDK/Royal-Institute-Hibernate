@@ -1,4 +1,4 @@
-package lk.royal.entity;
+package lk.royal.project.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

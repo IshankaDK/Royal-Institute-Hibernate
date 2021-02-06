@@ -1,4 +1,4 @@
-package lk.royal.controller;
+package lk.royal.project.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import lk.royal.project.bo.BOFactory;
+import lk.royal.project.bo.BOType;
+import lk.royal.project.bo.custom.impl.StudentBOImpl;
 
 public class StudentFormController {
 
@@ -64,7 +67,7 @@ public class StudentFormController {
     @FXML
     private JFXButton btnNew;
 
-//    StudentBOImpl studentBO = BOFactory.getInstance().getBO(BOFactory.BOType.STUDENT);
+    StudentBOImpl studentBO = BOFactory.getInstance().getBO(BOType.STUDENT);
 
     public void initialize() {
 
@@ -87,12 +90,12 @@ public class StudentFormController {
         txtContact.setDisable(false);
         txtGender.setDisable(false);
         txtDob.setDisable(false);
-//        try {
-//            String s = studentBO.newStudentId();
-//            txtId.setText(s);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            String s = studentBO.newStudentId();
+            txtId.setText(s);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
