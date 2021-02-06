@@ -1,5 +1,6 @@
 package lk.royal.project.bo;
 
+import lk.royal.project.bo.custom.impl.CourseBOImpl;
 import lk.royal.project.bo.custom.impl.StudentBOImpl;
 
 public class BOFactory {
@@ -17,6 +18,8 @@ public class BOFactory {
         switch (boType) {
             case STUDENT:
                 return (T) new StudentBOImpl();
+            case COURSE:
+                return (T) new CourseBOImpl();
             default:
                 return null;
         }

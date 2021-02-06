@@ -6,25 +6,27 @@ import lk.royal.project.dao.DAOFactory;
 import lk.royal.project.dao.DAOType;
 import lk.royal.project.dao.custom.impl.StudentDAOImpl;
 import lk.royal.project.dto.StudentDTO;
+import lk.royal.project.entity.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentBOImpl implements StudentBO {
 
     StudentDAOImpl studentDAO = DAOFactory.getInstance().getDAO(DAOType.STUDENT);
     @Override
-    public boolean addStudent(StudentDTO customer) throws Exception {
-        return false;
+    public boolean addStudent(StudentDTO student) throws Exception {
+        return studentDAO.add(new Student(student.getId(),student.getName(),student.getAddress(),student.getContact(),student.getDob(),student.getGender()));
     }
 
     @Override
     public boolean deleteStudent(String id) throws Exception {
-        return false;
+        return studentDAO.delete(id);
     }
 
     @Override
-    public boolean updateStudent(StudentDTO customer) throws Exception {
-        return false;
+    public boolean updateStudent(StudentDTO student) throws Exception {
+        return studentDAO.update(new Student(student.getId(),student.getName(),student.getAddress(),student.getContact(),student.getDob(),student.getGender()));
     }
 
     @Override
@@ -34,7 +36,12 @@ public class StudentBOImpl implements StudentBO {
 
     @Override
     public List<StudentDTO> getAllStudent() throws Exception {
-        return null;
+        List<Student> all = studentDAO.findAll();
+        List<StudentDTO> dtos = new ArrayList<>();
+        for (Student student : all) {
+            dtos.add(new StudentDTO(student.getId(),student.getName(),student.getAddress(),student.getContact(),student.getDob(),student.getGender()));
+        }
+        return dtos;
     }
 
     @Override

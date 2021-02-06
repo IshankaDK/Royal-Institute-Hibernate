@@ -1,5 +1,6 @@
 package lk.royal.project.factory;
 
+import lk.royal.project.entity.Course;
 import lk.royal.project.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,6 +19,7 @@ public class FactoryConfiguration {
             properties.load(ClassLoader.getSystemClassLoader().getResourceAsStream("hibernate.properties"));
             sessionFactory = new Configuration().mergeProperties(properties)
                     .addAnnotatedClass(Student.class)
+                    .addAnnotatedClass(Course.class)
                     .buildSessionFactory();
         } catch (IOException e) {
             e.printStackTrace();

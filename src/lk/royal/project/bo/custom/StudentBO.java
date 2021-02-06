@@ -6,11 +6,11 @@ import lk.royal.project.dto.StudentDTO;
 import java.util.List;
 
 public interface StudentBO extends SuperBO {
-    public boolean addStudent(StudentDTO customer) throws Exception;
+    public boolean addStudent(StudentDTO student) throws Exception;
 
     public boolean deleteStudent(String id) throws Exception;
 
-    public boolean updateStudent(StudentDTO customer) throws Exception;
+    public boolean updateStudent(StudentDTO student) throws Exception;
 
     public StudentDTO getStudent(String id) throws Exception;
 
