@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -27,11 +28,10 @@
          </font>
       </Label>
       <JFXTextField fx:id="txtId" editable="false" labelFloat="true" layoutX="44.0" layoutY="108.0" prefHeight="31.0" prefWidth="165.0" promptText="Student_Id" />
-      <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="44.0" layoutY="157.0" prefHeight="31.0" prefWidth="165.0" promptText="Contact" />
-      <JFXTextField fx:id="txtDob" labelFloat="true" layoutX="230.0" layoutY="157.0" prefHeight="31.0" prefWidth="228.0" promptText="Date_of_Birth" />
-      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="230.0" layoutY="108.0" prefHeight="31.0" prefWidth="228.0" promptText="Student_Name" />
-      <JFXTextField fx:id="txtGender" labelFloat="true" layoutX="477.0" layoutY="157.0" prefHeight="31.0" prefWidth="244.0" promptText="Gender" />
-      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="474.0" layoutY="108.0" prefHeight="31.0" prefWidth="244.0" promptText="Address" />
+      <JFXTextField fx:id="txtContact" labelFloat="true" layoutX="44.0" layoutY="157.0" onAction="#txtContactOnAction" prefHeight="31.0" prefWidth="165.0" promptText="Contact" />
+      <JFXTextField fx:id="txtName" labelFloat="true" layoutX="230.0" layoutY="108.0" onAction="#txtNameOnAction" prefHeight="31.0" prefWidth="228.0" promptText="Student_Name" />
+      <JFXTextField fx:id="txtGender" labelFloat="true" layoutX="477.0" layoutY="157.0" onAction="#txtGenderOnAction" prefHeight="31.0" prefWidth="244.0" promptText="Gender" />
+      <JFXTextField fx:id="txtAddress" labelFloat="true" layoutX="474.0" layoutY="108.0" onAction="#txtAddressOnAction" prefHeight="31.0" prefWidth="244.0" promptText="Address" />
       <JFXButton fx:id="btnSave" layoutX="470.0" layoutY="202.0" onAction="#btnSaveOnAction" prefHeight="42.0" prefWidth="109.0" style="-fx-background-color: #079992;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
@@ -56,5 +56,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <JFXDatePicker fx:id="txtDob" defaultColor="BLACK" layoutX="230.0" layoutY="165.0" prefHeight="25.0" prefWidth="228.0" promptText="Date_of_Birth" />
    </children>
 </AnchorPane>

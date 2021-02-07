@@ -1,6 +1,7 @@
 package lk.royal.project.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,18 +14,22 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import lk.royal.project.bo.BOFactory;
 import lk.royal.project.bo.BOType;
 import lk.royal.project.bo.custom.impl.StudentBOImpl;
 import lk.royal.project.dto.StudentDTO;
 import lk.royal.project.model.StudentTM;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class StudentFormController {
 
+    public JFXDatePicker txtDob;
     @FXML
     private AnchorPane main;
 
@@ -37,8 +42,8 @@ public class StudentFormController {
     @FXML
     private JFXTextField txtContact;
 
-    @FXML
-    private JFXTextField txtDob;
+//    @FXML
+//    private JFXTextField txtDob;
 
     @FXML
     private JFXTextField txtName;
@@ -88,7 +93,7 @@ public class StudentFormController {
                     txtAddress.clear();
                     txtContact.clear();
                     txtGender.clear();
-                    txtDob.clear();
+                    txtDob.setValue(null);
                     return;
                 }
                 btnSave.setText("Update");
@@ -105,7 +110,7 @@ public class StudentFormController {
                 txtAddress.setText(selectedItem.getAddress());
                 txtContact.setText(selectedItem.getContact());
                 txtGender.setText(selectedItem.getGender());
-                txtDob.setText(selectedItem.getDob());
+                txtDob.setValue(LocalDate.parse(selectedItem.getDob()));
             }
         });
     }
@@ -133,7 +138,7 @@ public class StudentFormController {
         txtAddress.clear();
         txtContact.clear();
         txtGender.clear();
-        txtDob.clear();
+        txtDob.setValue(null);
         tblStudent.getSelectionModel().clearSelection();
         txtId.setDisable(false);
         txtName.setDisable(false);
@@ -156,7 +161,7 @@ public class StudentFormController {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String contact = txtContact.getText();
-        String dob = txtDob.getText();
+        String dob = txtDob.getValue().toString();
         String gender = txtGender.getText();
 
         if (name.trim().length() == 0 || address.trim().length() == 0 || contact.trim().length() == 0 || dob.trim().length() == 0 || gender.trim().length() == 0) {
@@ -177,7 +182,7 @@ public class StudentFormController {
         } else {
             StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
             try {
-                boolean b = studentBO.updateStudent(new StudentDTO(selectedItem.getId(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtDob.getText(), txtGender.getText()));
+                boolean b = studentBO.updateStudent(new StudentDTO(selectedItem.getId(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtDob.getValue().toString(), txtGender.getText()));
                 if (b) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Student Updated!", ButtonType.OK).show();
                 }
@@ -205,6 +210,47 @@ public class StudentFormController {
                 e.printStackTrace();
                 new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
             }
+        }
+    }
+
+    public void txtContactOnAction(ActionEvent actionEvent) {
+        if(Pattern.compile("^(0)[0-9]{9}$").matcher(txtContact.getText().trim()).matches()){
+            txtContact.setFocusColor(Paint.valueOf("skyblue"));
+            txtDob.requestFocus();
+        }else {
+            txtContact.setFocusColor(Paint.valueOf("red"));
+            txtContact.requestFocus();
+        }
+    }
+
+
+    public void txtNameOnAction(ActionEvent actionEvent) {
+        if(Pattern.compile("^[A-z| ]{1,}$").matcher(txtName.getText().trim()).matches()){
+            txtName.setFocusColor(Paint.valueOf("skyblue"));
+            txtAddress.requestFocus();
+        }else {
+            txtName.setFocusColor(Paint.valueOf("red"));
+            txtName.requestFocus();
+        }
+    }
+
+    public void txtGenderOnAction(ActionEvent actionEvent) {
+        if(Pattern.compile("^(Male|Female)$").matcher(txtGender.getText().trim()).matches()){
+            txtGender.setFocusColor(Paint.valueOf("skyblue"));
+            btnSaveOnAction(actionEvent);
+        }else {
+            txtGender.setFocusColor(Paint.valueOf("red"));
+            txtGender.requestFocus();
+        }
+    }
+
+    public void txtAddressOnAction(ActionEvent actionEvent) {
+        if(Pattern.compile("^[A-z| |0-9|,]{1,}$").matcher(txtAddress.getText().trim()).matches()){
+            txtAddress.setFocusColor(Paint.valueOf("skyblue"));
+            txtContact.requestFocus();
+        }else {
+            txtAddress.setFocusColor(Paint.valueOf("red"));
+            txtAddress.requestFocus();
         }
     }
 }
