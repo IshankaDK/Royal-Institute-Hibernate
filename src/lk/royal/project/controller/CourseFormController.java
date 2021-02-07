@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import lk.royal.project.bo.BOFactory;
 import lk.royal.project.bo.BOType;
 import lk.royal.project.bo.custom.impl.CourseBOImpl;
@@ -26,6 +27,7 @@ import lk.royal.project.model.StudentTM;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class CourseFormController {
     public AnchorPane main;
@@ -132,40 +134,50 @@ public class CourseFormController {
         String duration = txtDuration.getText();
 
 
-        if (code.trim().length() == 0 || name.trim().length() == 0 || fee == 0 || duration.trim().length() == 0 ) {
-            new Alert(Alert.AlertType.ERROR, " Fields can not be empty", ButtonType.OK).show();
+        if (code.trim().length() >0 || name.trim().length() > 0|| fee >0 || duration.trim().length() >0) {
+            if (btnSave.getText().equals("Save")) {
+                try {
+                    boolean flag = courseBO.addCourse(new CourseDTO(code, name, fee, duration));
+                    if (flag) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Course Saved!", ButtonType.OK).show();
+                    }
+                }catch (NumberFormatException e){
+                    new Alert(Alert.AlertType.ERROR,"Fields empty!",ButtonType.OK).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
+                }
+                btnNewOnAction(event);
+            } else {
+                CourseTM selectedItem = tblCourse.getSelectionModel().getSelectedItem();
+                try {
+                    boolean b = courseBO.updateCourse(new CourseDTO(selectedItem.getCode(), txtCourseName.getText(),Double.parseDouble(txtFee.getText()),txtDuration.getText()));
+                    if (b) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Course Updated!", ButtonType.OK).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
+                }
+                btnNewOnAction(event);
+            }
+            loadAllCourse();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Fields empty!",ButtonType.OK).show();
         }
 
-        if (btnSave.getText().equals("Save")) {
-            try {
-                boolean flag = courseBO.addCourse(new CourseDTO(code, name, fee, duration));
-                if (flag) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Course Saved!", ButtonType.OK).show();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
-            }
-              btnNewOnAction(event);
-        } else {
-            CourseTM selectedItem = tblCourse.getSelectionModel().getSelectedItem();
-            try {
-                boolean b = courseBO.updateCourse(new CourseDTO(selectedItem.getCode(), txtCourseName.getText(),Double.parseDouble(txtFee.getText()),txtDuration.getText()));
-                if (b) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Course Updated!", ButtonType.OK).show();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
-            }
-            btnNewOnAction(event);
-        }
-        loadAllCourse();
+
     }
 
     @FXML
     void txtCourseIdOnAction(ActionEvent event) {
-
+        if(Pattern.compile("^(CT)[0-9]{1,}$").matcher(txtCourseId.getText().trim()).matches()){
+            txtCourseId.setFocusColor(Paint.valueOf("skyblue"));
+            txtCourseName.requestFocus();
+        }else {
+            txtCourseId.setFocusColor(Paint.valueOf("red"));
+            txtCourseId.requestFocus();
+        }
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
@@ -182,6 +194,36 @@ public class CourseFormController {
                 e.printStackTrace();
                 new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
             }
+        }
+    }
+
+    public void txtFeeOnAction(ActionEvent actionEvent) {
+        if(Pattern.compile("^[0-9]{1,}$").matcher(txtFee.getText().trim()).matches()){
+            txtFee.setFocusColor(Paint.valueOf("skyblue"));
+            txtDuration.requestFocus();
+        }else {
+            txtFee.setFocusColor(Paint.valueOf("red"));
+            txtFee.requestFocus();
+        }
+    }
+
+    public void txtCourseNameOnAction(ActionEvent actionEvent) {
+        if(Pattern.compile("^[A-z| ]{1,}$").matcher(txtCourseName.getText().trim()).matches()){
+            txtCourseName.setFocusColor(Paint.valueOf("skyblue"));
+            txtFee.requestFocus();
+        }else {
+            txtCourseName.setFocusColor(Paint.valueOf("red"));
+            txtCourseName.requestFocus();
+        }
+    }
+
+    public void txtDurationOnAction(ActionEvent actionEvent) {
+        if(Pattern.compile("^[0-9 |A-z| ]{1,}$").matcher(txtDuration.getText().trim()).matches()){
+            txtDuration.setFocusColor(Paint.valueOf("skyblue"));
+            btnSaveOnAction(actionEvent);
+        }else {
+            txtDuration.setFocusColor(Paint.valueOf("red"));
+            txtDuration.requestFocus();
         }
     }
 }

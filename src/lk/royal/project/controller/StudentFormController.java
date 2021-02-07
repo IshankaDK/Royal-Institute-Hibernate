@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -31,7 +30,6 @@ public class StudentFormController {
 
     @FXML
     private TableView<StudentTM> tblStudent;
-
 
     @FXML
     private JFXTextField txtId;
@@ -128,7 +126,6 @@ public class StudentFormController {
         tblStudent.setItems(students);
     }
 
-
     @FXML
     void btnNewOnAction(ActionEvent event) {
         txtId.clear();
@@ -191,11 +188,6 @@ public class StudentFormController {
             btnNewOnAction(event);
         }
         loadAllStudent();
-    }
-
-    @FXML
-    void txtIdOnAction(ActionEvent event) {
-
     }
 
     @FXML

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,10 +13,10 @@
    <children>
       <TableView fx:id="tblCourse" layoutX="41.0" layoutY="266.0" prefHeight="225.0" prefWidth="674.0">
          <columns>
-            <TableColumn fx:id="colCourseId" prefWidth="152.0" text="Course_Id" />
-            <TableColumn fx:id="colCourseName" prefWidth="184.0" text="Course_Name" />
-            <TableColumn fx:id="colType" prefWidth="181.0" text="Course_Fee" />
-            <TableColumn fx:id="colDuration" prefWidth="156.0" text="Duration" />
+            <TableColumn prefWidth="152.0" text="Course_Id" />
+            <TableColumn prefWidth="184.0" text="Course_Name" />
+            <TableColumn prefWidth="181.0" text="Course_Fee" />
+            <TableColumn prefWidth="156.0" text="Duration" />
          </columns>
       </TableView>
       <Label layoutX="42.0" layoutY="32.0" prefHeight="53.0" prefWidth="217.0" text="Courses" textFill="#34495e">
@@ -28,19 +29,28 @@
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnNew" layoutX="606.0" layoutY="73.0" onAction="#btnNewOnAction" prefHeight="31.0" prefWidth="109.0" style="-fx-background-color: #1e3799;" text="+New" textFill="WHITE">
+      <JFXButton layoutX="606.0" layoutY="73.0" onAction="#btnNewOnAction" prefHeight="31.0" prefWidth="109.0" style="-fx-background-color: #1e3799;" text="+New" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
-      <JFXTextField fx:id="txtFee" labelFloat="true" layoutX="44.0" layoutY="160.0" prefHeight="31.0" prefWidth="278.0" promptText="Course_Fee" />
-      <JFXTextField fx:id="txtCourseName" labelFloat="true" layoutX="359.0" layoutY="107.0" prefHeight="31.0" prefWidth="278.0" promptText="Course_Name" />
-      <JFXTextField fx:id="txtDuration" labelFloat="true" layoutX="359.0" layoutY="160.0" prefHeight="31.0" prefWidth="278.0" promptText="Duration" />
+      <JFXTextField fx:id="txtFee" labelFloat="true" layoutX="44.0" layoutY="160.0" onAction="#txtFeeOnAction" prefHeight="31.0" prefWidth="278.0" promptText="Course_Fee" />
+      <JFXTextField fx:id="txtCourseName" labelFloat="true" layoutX="359.0" layoutY="107.0" onAction="#txtCourseNameOnAction" prefHeight="31.0" prefWidth="278.0" promptText="Course_Name" />
+      <JFXTextField fx:id="txtDuration" labelFloat="true" layoutX="359.0" layoutY="160.0" onAction="#txtDurationOnAction" prefHeight="31.0" prefWidth="278.0" promptText="Duration" />
       <JFXButton fx:id="btnDelete" layoutX="606.0" layoutY="202.0" onAction="#btnDeleteOnAction" prefHeight="42.0" prefWidth="109.0" style="-fx-background-color: #d63031;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </JFXButton>
    </children>
 </AnchorPane>
