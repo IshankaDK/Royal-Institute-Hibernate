@@ -1,6 +1,7 @@
 package lk.royal.project.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.beans.value.ChangeListener;
@@ -29,7 +30,6 @@ import java.util.regex.Pattern;
 
 public class StudentFormController {
 
-    public JFXDatePicker txtDob;
     @FXML
     private AnchorPane main;
 
@@ -42,14 +42,14 @@ public class StudentFormController {
     @FXML
     private JFXTextField txtContact;
 
-//    @FXML
-//    private JFXTextField txtDob;
+    @FXML
+    public JFXDatePicker txtDob;
 
     @FXML
     private JFXTextField txtName;
 
     @FXML
-    private JFXTextField txtGender;
+    public JFXComboBox<String> cmbGender;
 
     @FXML
     private JFXTextField txtAddress;
@@ -75,8 +75,13 @@ public class StudentFormController {
         txtName.setDisable(true);
         txtAddress.setDisable(true);
         txtContact.setDisable(true);
-        txtGender.setDisable(true);
+        cmbGender.setDisable(true);
         txtDob.setDisable(true);
+
+        ObservableList<String> gen = FXCollections.observableArrayList();
+        gen.add("Male");
+        gen.add("Female");
+        cmbGender.setItems(gen);
 
         loadAllStudent();
 
@@ -92,7 +97,7 @@ public class StudentFormController {
                     txtName.clear();
                     txtAddress.clear();
                     txtContact.clear();
-                    txtGender.clear();
+                    cmbGender.setValue(null);
                     txtDob.setValue(null);
                     return;
                 }
@@ -103,13 +108,13 @@ public class StudentFormController {
                 txtName.setDisable(false);
                 txtAddress.setDisable(false);
                 txtContact.setDisable(false);
-                txtGender.setDisable(false);
+                cmbGender.setDisable(false);
                 txtDob.setDisable(false);
                 txtId.setText(selectedItem.getId());
                 txtName.setText(selectedItem.getName());
                 txtAddress.setText(selectedItem.getAddress());
                 txtContact.setText(selectedItem.getContact());
-                txtGender.setText(selectedItem.getGender());
+                cmbGender.setValue(selectedItem.getGender());
                 txtDob.setValue(LocalDate.parse(selectedItem.getDob()));
             }
         });
@@ -137,14 +142,14 @@ public class StudentFormController {
         txtName.clear();
         txtAddress.clear();
         txtContact.clear();
-        txtGender.clear();
+        cmbGender.setValue(null);
         txtDob.setValue(null);
         tblStudent.getSelectionModel().clearSelection();
         txtId.setDisable(false);
         txtName.setDisable(false);
         txtAddress.setDisable(false);
         txtContact.setDisable(false);
-        txtGender.setDisable(false);
+        cmbGender.setDisable(false);
         txtDob.setDisable(false);
         try {
             String s = studentBO.newStudentId();
@@ -162,7 +167,7 @@ public class StudentFormController {
         String address = txtAddress.getText();
         String contact = txtContact.getText();
         String dob = txtDob.getValue().toString();
-        String gender = txtGender.getText();
+        String gender = cmbGender.getValue().toString();
 
         if (name.trim().length() == 0 || address.trim().length() == 0 || contact.trim().length() == 0 || dob.trim().length() == 0 || gender.trim().length() == 0) {
             new Alert(Alert.AlertType.ERROR, " Fields can not be empty", ButtonType.OK).show();
@@ -182,7 +187,7 @@ public class StudentFormController {
         } else {
             StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
             try {
-                boolean b = studentBO.updateStudent(new StudentDTO(selectedItem.getId(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtDob.getValue().toString(), txtGender.getText()));
+                boolean b = studentBO.updateStudent(new StudentDTO(selectedItem.getId(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtDob.getValue().toString(), cmbGender.getValue().toString()));
                 if (b) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Student Updated!", ButtonType.OK).show();
                 }
@@ -214,10 +219,10 @@ public class StudentFormController {
     }
 
     public void txtContactOnAction(ActionEvent actionEvent) {
-        if(Pattern.compile("^(0)[0-9]{9}$").matcher(txtContact.getText().trim()).matches()){
+        if (Pattern.compile("^(0)[0-9]{9}$").matcher(txtContact.getText().trim()).matches()) {
             txtContact.setFocusColor(Paint.valueOf("skyblue"));
             txtDob.requestFocus();
-        }else {
+        } else {
             txtContact.setFocusColor(Paint.valueOf("red"));
             txtContact.requestFocus();
         }
@@ -225,30 +230,21 @@ public class StudentFormController {
 
 
     public void txtNameOnAction(ActionEvent actionEvent) {
-        if(Pattern.compile("^[A-z| ]{1,}$").matcher(txtName.getText().trim()).matches()){
+        if (Pattern.compile("^[A-z| ]{1,}$").matcher(txtName.getText().trim()).matches()) {
             txtName.setFocusColor(Paint.valueOf("skyblue"));
             txtAddress.requestFocus();
-        }else {
+        } else {
             txtName.setFocusColor(Paint.valueOf("red"));
             txtName.requestFocus();
         }
     }
 
-    public void txtGenderOnAction(ActionEvent actionEvent) {
-        if(Pattern.compile("^(Male|Female)$").matcher(txtGender.getText().trim()).matches()){
-            txtGender.setFocusColor(Paint.valueOf("skyblue"));
-            btnSaveOnAction(actionEvent);
-        }else {
-            txtGender.setFocusColor(Paint.valueOf("red"));
-            txtGender.requestFocus();
-        }
-    }
 
     public void txtAddressOnAction(ActionEvent actionEvent) {
-        if(Pattern.compile("^[A-z| |0-9|,]{1,}$").matcher(txtAddress.getText().trim()).matches()){
+        if (Pattern.compile("^[A-z| |0-9|,]{1,}$").matcher(txtAddress.getText().trim()).matches()) {
             txtAddress.setFocusColor(Paint.valueOf("skyblue"));
             txtContact.requestFocus();
-        }else {
+        } else {
             txtAddress.setFocusColor(Paint.valueOf("red"));
             txtAddress.requestFocus();
         }
