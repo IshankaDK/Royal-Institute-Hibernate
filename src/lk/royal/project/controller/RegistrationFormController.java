@@ -166,11 +166,31 @@ public class RegistrationFormController {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
         }
+        btnNewOnAction(event);
     }
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
-
+        String search = txtSearch.getText().trim();
+        btnNewOnAction(event);
+        try {
+            RegistrationDTO registration = bo.getRegistration(search);
+            txtRegId.setText(registration.getRegId());
+            txtRegDate.setText(registration.getRedDate());
+            txtRegFee.setText(String.valueOf(registration.getRegFee()));
+            txtId.setText(registration.getStudentDTO().getId());
+            txtName.setText(registration.getStudentDTO().getName());
+            txtAddress.setText(registration.getStudentDTO().getAddress());
+            txtContact.setText(registration.getStudentDTO().getContact());
+            txtDob.setText(registration.getStudentDTO().getDob());
+            txtGender.setText(registration.getStudentDTO().getGender());
+            cmbCourseCode.setValue(registration.getCourseDTO().getCode());
+            txtCourseName.setText(registration.getCourseDTO().getCourseName());
+            txtCourseFee.setText(String.valueOf(registration.getCourseDTO().getFee()));
+            txtCourseDuration.setText(registration.getCourseDTO().getDuration());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

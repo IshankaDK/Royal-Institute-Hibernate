@@ -27,7 +27,11 @@ public class RegistrationBOImpl implements RegistrationBO {
     @Override
     public RegistrationDTO getRegistration(String id) throws Exception {
         Registration reg = dao.find(id);
-        return null;
+        Student student = reg.getStudent();
+        StudentDTO studentDTO = new StudentDTO(student.getId(), student.getName(), student.getAddress(), student.getContact(), student.getDob(), student.getGender());
+        Course course = reg.getCourse();
+        CourseDTO courseDTO = new CourseDTO(course.getCode(), course.getCourseName(), course.getFee(), course.getDuration());
+        return new RegistrationDTO(reg.getRegId(),reg.getRedDate(),reg.getRegFee(),studentDTO,courseDTO);
     }
 
     @Override

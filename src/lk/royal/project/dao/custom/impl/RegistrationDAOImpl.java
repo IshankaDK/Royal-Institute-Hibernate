@@ -2,6 +2,7 @@ package lk.royal.project.dao.custom.impl;
 
 import lk.royal.project.dao.custom.RegistrationDAO;
 import lk.royal.project.entity.Registration;
+import lk.royal.project.entity.Student;
 import lk.royal.project.factory.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -45,7 +46,15 @@ public class RegistrationDAOImpl implements RegistrationDAO {
 
     @Override
     public Registration find(String s) throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        Registration registration = session.get(Registration.class, s);
+
+        transaction.commit();
+        session.close();
+        return registration;
     }
 
     @Override
