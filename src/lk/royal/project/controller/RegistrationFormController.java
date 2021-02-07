@@ -1,10 +1,7 @@
 package lk.royal.project.controller;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.royal.project.bo.BOFactory;
 import lk.royal.project.bo.BOType;
@@ -24,13 +20,10 @@ import lk.royal.project.bo.custom.impl.StudentBOImpl;
 import lk.royal.project.dto.CourseDTO;
 import lk.royal.project.dto.RegistrationDTO;
 import lk.royal.project.dto.StudentDTO;
-import lk.royal.project.model.CourseTM;
-import lk.royal.project.model.StudentTM;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class RegistrationFormController {
@@ -52,12 +45,6 @@ public class RegistrationFormController {
     private JFXTextField txtAddress;
 
     @FXML
-    private JFXButton btnSave;
-
-    @FXML
-    private JFXButton btnSearch;
-
-    @FXML
     private JFXTextField txtGender;
 
     @FXML
@@ -77,9 +64,6 @@ public class RegistrationFormController {
 
     @FXML
     private TextField txtSearch;
-
-    @FXML
-    private JFXButton btnNew;
 
     @FXML
     public JFXComboBox<String> cmbCourseCode;
@@ -141,6 +125,17 @@ public class RegistrationFormController {
         txtRegDate.setDisable(false);
         txtRegFee.setDisable(false);
         txtRegDate.setText(String.valueOf(LocalDate.now()));
+        txtId.clear();
+        txtName.clear();
+        txtAddress.clear();
+        txtContact.clear();
+        txtGender.clear();
+        txtDob.clear();
+        cmbCourseCode.setValue(null);
+        txtCourseFee.clear();
+        txtCourseDuration.clear();
+        txtCourseName.clear();
+        txtRegFee.clear();
 
         try {
             txtRegId.setText(bo.newRegID());
