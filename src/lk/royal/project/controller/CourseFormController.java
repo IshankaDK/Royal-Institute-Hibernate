@@ -128,45 +128,47 @@ public class CourseFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String code = txtCourseId.getText().trim();
-        String name = txtCourseName.getText();
-        double fee = Double.parseDouble(txtFee.getText());
-        String duration = txtDuration.getText();
 
-
-        if (code.trim().length() >0 || name.trim().length() > 0|| fee >0 || duration.trim().length() >0) {
+        if (txtCourseId.getText().trim().length() >0 && txtCourseName.getText().trim().length() > 0 && txtFee.getText().trim().length() > 0 && txtDuration.getText().length() >0) {
             if (btnSave.getText().equals("Save")) {
                 try {
+                    String code = txtCourseId.getText().trim();
+                    String name = txtCourseName.getText().trim();
+                    double fee = Double.parseDouble(txtFee.getText());
+                    String duration = txtDuration.getText();
+
                     boolean flag = courseBO.addCourse(new CourseDTO(code, name, fee, duration));
                     if (flag) {
                         new Alert(Alert.AlertType.CONFIRMATION, "Course Saved!", ButtonType.OK).show();
+                        btnNewOnAction(event);
                     }
                 }catch (NumberFormatException e){
-                    new Alert(Alert.AlertType.ERROR,"Fields empty!",ButtonType.OK).show();
+                    new Alert(Alert.AlertType.ERROR,"Enter Fee Correctly!",ButtonType.OK).show();
+                    txtFee.requestFocus();
                 } catch (Exception e) {
                     e.printStackTrace();
                     new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
                 }
-                btnNewOnAction(event);
             } else {
                 CourseTM selectedItem = tblCourse.getSelectionModel().getSelectedItem();
                 try {
                     boolean b = courseBO.updateCourse(new CourseDTO(selectedItem.getCode(), txtCourseName.getText(),Double.parseDouble(txtFee.getText()),txtDuration.getText()));
                     if (b) {
                         new Alert(Alert.AlertType.CONFIRMATION, "Course Updated!", ButtonType.OK).show();
+                        btnNewOnAction(event);
                     }
+                }catch (NumberFormatException e){
+                    new Alert(Alert.AlertType.ERROR,"Enter Fee Correctly!",ButtonType.OK).show();
+                    txtFee.requestFocus();
                 } catch (Exception e) {
                     e.printStackTrace();
                     new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
                 }
-                btnNewOnAction(event);
             }
             loadAllCourse();
         }else {
             new Alert(Alert.AlertType.ERROR,"Fields empty!",ButtonType.OK).show();
         }
-
-
     }
 
     @FXML
