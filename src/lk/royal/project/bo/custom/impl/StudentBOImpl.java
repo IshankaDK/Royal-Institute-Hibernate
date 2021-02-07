@@ -31,7 +31,8 @@ public class StudentBOImpl implements StudentBO {
 
     @Override
     public StudentDTO getStudent(String id) throws Exception {
-        return null;
+        Student student = studentDAO.find(id);
+        return new StudentDTO(student.getId(),student.getName(),student.getAddress(),student.getContact(),student.getDob(),student.getGender());
     }
 
     @Override

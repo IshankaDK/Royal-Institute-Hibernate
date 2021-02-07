@@ -1,5 +1,5 @@
 package lk.royal.project.bo;
 
 public enum BOType {
-    STUDENT, COURSE,
+    STUDENT, COURSE, REGISTRATION
 }

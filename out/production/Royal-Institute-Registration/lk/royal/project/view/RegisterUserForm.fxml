@@ -24,7 +24,7 @@
             <Font size="30.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="62.0" fitWidth="103.0" layoutX="94.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image" fitHeight="62.0" fitWidth="103.0" layoutX="94.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../asset/icons8-user-male-90.png" />
          </image>

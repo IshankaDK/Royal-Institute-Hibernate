@@ -6,6 +6,7 @@ import lk.royal.project.entity.Student;
 import lk.royal.project.factory.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 
 import java.util.List;
 
@@ -52,7 +53,15 @@ public class CourseDAOImpl implements CourseDAO {
 
     @Override
     public Course find(String s) throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        Course course  = session.get(Course.class, s);
+
+        transaction.commit();
+        session.close();
+        return course;
     }
 
     @Override

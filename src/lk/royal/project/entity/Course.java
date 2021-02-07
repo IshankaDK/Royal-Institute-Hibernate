@@ -2,6 +2,7 @@ package lk.royal.project.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Course implements SuperEntity {
@@ -10,8 +11,15 @@ public class Course implements SuperEntity {
     private String courseName;
     private double fee;
     private String duration;
+    @OneToOne(mappedBy = "course")
+    private Registration registration;
 
-    public Course() {
+    public Course(String code, String courseName, double fee, String duration, Registration registration) {
+        this.setCode(code);
+        this.setCourseName(courseName);
+        this.setFee(fee);
+        this.setDuration(duration);
+        this.setRegistration(registration);
     }
 
     public Course(String code, String courseName, double fee, String duration) {
@@ -19,6 +27,9 @@ public class Course implements SuperEntity {
         this.setCourseName(courseName);
         this.setFee(fee);
         this.setDuration(duration);
+    }
+
+    public Course() {
     }
 
     public String getCode() {
@@ -37,6 +48,13 @@ public class Course implements SuperEntity {
         this.courseName = courseName;
     }
 
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
+    }
 
     public String getDuration() {
         return duration;
@@ -46,12 +64,12 @@ public class Course implements SuperEntity {
         this.duration = duration;
     }
 
-    public double getFee() {
-        return fee;
+    public Registration getRegistration() {
+        return registration;
     }
 
-    public void setFee(double fee) {
-        this.fee = fee;
+    public void setRegistration(Registration registration) {
+        this.registration = registration;
     }
 
     @Override
@@ -61,6 +79,7 @@ public class Course implements SuperEntity {
                 ", courseName='" + courseName + '\'' +
                 ", fee=" + fee +
                 ", duration='" + duration + '\'' +
+                ", registration=" + registration +
                 '}';
     }
 }

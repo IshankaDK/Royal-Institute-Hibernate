@@ -33,7 +33,8 @@ public class CourseBOImpl implements CourseBO {
 
     @Override
     public CourseDTO getCourse(String id) throws Exception {
-        return null;
+        Course course = courseDAO.find(id);
+        return new CourseDTO(course.getCode(),course.getCourseName(),course.getFee(),course.getDuration());
     }
 
     @Override

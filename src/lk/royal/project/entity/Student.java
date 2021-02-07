@@ -2,6 +2,7 @@ package lk.royal.project.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Student implements SuperEntity{
@@ -12,6 +13,20 @@ public class Student implements SuperEntity{
     private String contact;
     private String dob;
     private String gender;
+    @OneToOne(mappedBy = "student")
+    private Registration registration;
+
+    public Student(String id, String name, String address, String contact, String dob, String gender, Registration registration) {
+        this.setId(id);
+        this.setName(name);
+        this.setAddress(address);
+        this.setContact(contact);
+        this.setDob(dob);
+        this.setGender(gender);
+        this.setRegistration(registration);
+    }
+
+
 
     public Student() {
     }
@@ -36,6 +51,7 @@ public class Student implements SuperEntity{
                 ", gender='" + getGender() + '\'' +
                 '}';
     }
+
 
     public String getId() {
         return id;
@@ -83,5 +99,13 @@ public class Student implements SuperEntity{
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public Registration getRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(Registration registration) {
+        this.registration = registration;
     }
 }
