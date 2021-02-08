@@ -34,6 +34,11 @@
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </JFXButton>
+                  <JFXButton layoutX="10.0" layoutY="187.0" onAction="#btnReportOnAction" prefHeight="56.0" prefWidth="203.0" style="-fx-background-color: #273c75; -fx-border-color: #192a56;" text="Report" textFill="#ebebeb">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </JFXButton>
                   <JFXButton layoutX="10.0" layoutY="178.0" onAction="#btnSettingsOnAction" prefHeight="56.0" prefWidth="202.0" style="-fx-background-color: #273c75; -fx-border-color: #192a56;" text="Settings" textFill="#ebebeb">
                      <font>
                         <Font name="System Bold" size="29.0" />

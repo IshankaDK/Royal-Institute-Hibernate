@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="540.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.royal.project.controller.ReportFormController">
+   <children>
+      <TableView fx:id="tblStudent" layoutX="51.0" layoutY="181.0" prefHeight="312.0" prefWidth="674.0">
+         <columns>
+            <TableColumn prefWidth="95.0" text="Student_Id" />
+            <TableColumn prefWidth="114.0" text="Student_Name" />
+            <TableColumn prefWidth="144.0" text="Address" />
+            <TableColumn prefWidth="94.0" text="Contact" />
+            <TableColumn prefWidth="132.0" text="Date of Birth" />
+            <TableColumn prefWidth="94.0" text="Gender" />
+         </columns>
+      </TableView>
+      <Label layoutX="52.0" layoutY="42.0" prefHeight="53.0" prefWidth="364.0" text="Course wise Student" textFill="#34495e">
+         <font>
+            <Font name="Bauhaus 93" size="34.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbCourseId" layoutX="416.0" layoutY="95.0" onAction="#cmbCourseIdOnAction" prefHeight="47.0" prefWidth="306.0" promptText="Coure_Id" style="-fx-font-size: 23;" />
+   </children>
+</AnchorPane>

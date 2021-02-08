@@ -83,4 +83,10 @@ public class DashBoardFormController {
         stage.centerOnScreen();
         stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("../view/LoginForm.fxml"))));
     }
+
+    public void btnReportOnAction(ActionEvent actionEvent) throws IOException {
+        initUI("ReportForm.fxml");
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setTitle("Report Form");
+    }
 }
