@@ -34,7 +34,15 @@ public class LoginDAOImpl implements LoginDAO {
 
     @Override
     public Login find(String s) throws Exception {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        Login login = session.get(Login.class, s);
+
+        transaction.commit();
+        session.close();
+        return login;
     }
 
     @Override
