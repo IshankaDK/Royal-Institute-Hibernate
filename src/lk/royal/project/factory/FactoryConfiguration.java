@@ -1,6 +1,7 @@
 package lk.royal.project.factory;
 
 import lk.royal.project.entity.Course;
+import lk.royal.project.entity.Login;
 import lk.royal.project.entity.Registration;
 import lk.royal.project.entity.Student;
 import org.hibernate.Session;
@@ -22,6 +23,7 @@ public class FactoryConfiguration {
                     .addAnnotatedClass(Student.class)
                     .addAnnotatedClass(Course.class)
                     .addAnnotatedClass(Registration.class)
+                    .addAnnotatedClass(Login.class)
                     .buildSessionFactory();
         } catch (IOException e) {
             e.printStackTrace();

@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface QueryDAO extends SuperDAO {
     List<Student> getCourseWiseStudent(String id) throws Exception;
+    int getTotalStudent()throws Exception;
+    int getTotalCourse()throws Exception;
+
 }

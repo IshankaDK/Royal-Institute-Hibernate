@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,14 +22,14 @@ public class QueryDAOImpl implements QueryDAO {
                 "WHERE (c.code=r.course_code && s.id = r.student_id) && c.code = :id");
         sqlQuery.setParameter("id", id);
 
-        List<Object> resultList =  (List<Object>) sqlQuery.getResultList();
+        List<Object> resultList = (List<Object>) sqlQuery.getResultList();
 
         transaction.commit();
         session.close();
 
         List<Student> studentList = new ArrayList<>();
         Iterator itr = resultList.iterator();
-        while(itr.hasNext()){
+        while (itr.hasNext()) {
             Object[] obj = (Object[]) itr.next();
             String sId = String.valueOf(obj[0]);
             String sName = String.valueOf(obj[1]);
@@ -36,9 +37,31 @@ public class QueryDAOImpl implements QueryDAO {
             String sContact = String.valueOf(obj[3]);
             String sDob = String.valueOf(obj[4]);
             String sGender = String.valueOf(obj[5]);
-            studentList.add(new Student(sId,sName,sAddress,sContact,sDob,sGender));
+            studentList.add(new Student(sId, sName, sAddress, sContact, sDob, sGender));
         }
 //        System.out.println(studentList);
         return studentList;
+    }
+
+    @Override
+    public int getTotalStudent() throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query sqlQuery = session.createNativeQuery("SELECT COUNT(id) FROM Student");
+        int count = ((BigInteger) sqlQuery.uniqueResult()).intValue();
+        transaction.commit();
+        session.close();
+        return count;
+    }
+
+    @Override
+    public int getTotalCourse() throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query sqlQuery = session.createNativeQuery("SELECT COUNT(code) FROM Course");
+        int count = ((BigInteger) sqlQuery.uniqueResult()).intValue();
+        transaction.commit();
+        session.close();
+        return count;
     }
 }

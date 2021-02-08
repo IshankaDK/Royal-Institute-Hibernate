@@ -1,9 +1,6 @@
 package lk.royal.project.dao;
 
-import lk.royal.project.dao.custom.impl.CourseDAOImpl;
-import lk.royal.project.dao.custom.impl.QueryDAOImpl;
-import lk.royal.project.dao.custom.impl.RegistrationDAOImpl;
-import lk.royal.project.dao.custom.impl.StudentDAOImpl;
+import lk.royal.project.dao.custom.impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -25,6 +22,8 @@ public class DAOFactory {
                 return (T) new RegistrationDAOImpl();
             case QUERY:
                 return (T) new QueryDAOImpl();
+            case LOGIN:
+                return (T)new LoginDAOImpl();
             default:
                 return null;
         }

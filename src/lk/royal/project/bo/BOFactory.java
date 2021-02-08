@@ -1,9 +1,6 @@
 package lk.royal.project.bo;
 
-import lk.royal.project.bo.custom.impl.CourseBOImpl;
-import lk.royal.project.bo.custom.impl.RegistrationBOImpl;
-import lk.royal.project.bo.custom.impl.ReportBOImpl;
-import lk.royal.project.bo.custom.impl.StudentBOImpl;
+import lk.royal.project.bo.custom.impl.*;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -26,6 +23,10 @@ public class BOFactory {
                 return (T) new RegistrationBOImpl();
             case REPORT:
                 return (T) new ReportBOImpl();
+            case DEFAULT:
+                return (T) new DefaultBOImpl();
+            case LOGIN:
+                return (T) new LoginBOImpl();
             default:
                 return null;
         }
