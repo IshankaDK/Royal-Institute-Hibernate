@@ -1,8 +1,7 @@
 package lk.royal.project.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Course implements SuperEntity {
@@ -11,10 +10,10 @@ public class Course implements SuperEntity {
     private String courseName;
     private double fee;
     private String duration;
-    @OneToOne(mappedBy = "course")
-    private Registration registration;
+    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
+    private List<Registration> registration;
 
-    public Course(String code, String courseName, double fee, String duration, Registration registration) {
+    public Course(String code, String courseName, double fee, String duration, List<Registration> registration) {
         this.setCode(code);
         this.setCourseName(courseName);
         this.setFee(fee);
@@ -64,22 +63,23 @@ public class Course implements SuperEntity {
         this.duration = duration;
     }
 
-    public Registration getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(Registration registration) {
-        this.registration = registration;
-    }
 
     @Override
     public String toString() {
         return "Course{" +
-                "code='" + code + '\'' +
-                ", courseName='" + courseName + '\'' +
-                ", fee=" + fee +
-                ", duration='" + duration + '\'' +
-                ", registration=" + registration +
+                "code='" + getCode() + '\'' +
+                ", courseName='" + getCourseName() + '\'' +
+                ", fee=" + getFee() +
+                ", duration='" + getDuration() + '\'' +
+                ", registration=" + getRegistration() +
                 '}';
+    }
+
+    public List<Registration> getRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(List<Registration> registration) {
+        this.registration = registration;
     }
 }

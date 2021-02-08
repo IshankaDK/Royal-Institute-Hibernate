@@ -189,9 +189,12 @@ public class CourseFormController {
             CourseTM selectedItem = tblCourse.getSelectionModel().getSelectedItem();
 
             try {
-                courseBO.deleteCourse(selectedItem.getCode());
-                tblCourse.getItems().remove(selectedItem);
-                tblCourse.getSelectionModel().clearSelection();
+                boolean b = courseBO.deleteCourse(selectedItem.getCode());
+                if (b){
+                    new Alert(Alert.AlertType.CONFIRMATION,"Deleted!",ButtonType.OK).show();
+                    tblCourse.getItems().remove(selectedItem);
+                    tblCourse.getSelectionModel().clearSelection();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();

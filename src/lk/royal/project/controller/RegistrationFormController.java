@@ -1,6 +1,7 @@
 package lk.royal.project.controller;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class RegistrationFormController {
+
+    @FXML
     public AnchorPane main;
 
     @FXML
@@ -57,7 +60,7 @@ public class RegistrationFormController {
     private JFXTextField txtRegId;
 
     @FXML
-    private JFXTextField txtRegDate;
+    public JFXDatePicker txtRegDate;
 
     @FXML
     private JFXTextField txtRegFee;
@@ -105,7 +108,6 @@ public class RegistrationFormController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        System.out.println(observableList);
         cmbCourseCode.setItems(observableList);
     }
 
@@ -124,14 +126,14 @@ public class RegistrationFormController {
         txtRegId.setDisable(false);
         txtRegDate.setDisable(false);
         txtRegFee.setDisable(false);
-        txtRegDate.setText(String.valueOf(LocalDate.now()));
+        txtRegDate.setValue(LocalDate.now());
         txtId.clear();
         txtName.clear();
         txtAddress.clear();
         txtContact.clear();
         txtGender.clear();
         txtDob.clear();
-        cmbCourseCode.setValue(null);
+//        cmbCourseCode.setValue();
         txtCourseFee.clear();
         txtCourseDuration.clear();
         txtCourseName.clear();
@@ -147,7 +149,7 @@ public class RegistrationFormController {
     @FXML
     void btnSaveOnAction(ActionEvent event) {
         String regId = txtRegId.getText();
-        String regDate = txtRegDate.getText();
+        String regDate = txtRegDate.getValue().toString();
         double fee = Double.parseDouble(txtRegFee.getText());
         StudentDTO studentDTO = new StudentDTO(txtId.getText(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtDob.getText(), txtGender.getText());
         CourseDTO courseDTO = new CourseDTO(cmbCourseCode.getValue(), txtCourseName.getText(), Double.parseDouble(txtCourseFee.getText()), txtCourseDuration.getText());
@@ -171,7 +173,7 @@ public class RegistrationFormController {
         try {
             RegistrationDTO registration = bo.getRegistration(search);
             txtRegId.setText(registration.getRegId());
-            txtRegDate.setText(registration.getRedDate());
+            txtRegDate.setValue(LocalDate.parse(registration.getRedDate()));
             txtRegFee.setText(String.valueOf(registration.getRegFee()));
             txtId.setText(registration.getStudentDTO().getId());
             txtName.setText(registration.getStudentDTO().getName());
@@ -232,5 +234,12 @@ public class RegistrationFormController {
                 }
             }
         }
+    }
+
+    public void txtSearchOnAction(ActionEvent actionEvent) {
+        btnSearchOnAction(actionEvent);
+    }
+
+    public void txtRegFeeOnAction(ActionEvent actionEvent) {
     }
 }

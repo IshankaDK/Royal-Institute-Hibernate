@@ -14,7 +14,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import lk.royal.project.bo.BOFactory;
 import lk.royal.project.bo.BOType;
@@ -29,9 +28,6 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class StudentFormController {
-
-    @FXML
-    private AnchorPane main;
 
     @FXML
     private TableView<StudentTM> tblStudent;
@@ -162,42 +158,41 @@ public class StudentFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String id = txtId.getText().trim();
-        String name = txtName.getText();
-        String address = txtAddress.getText();
-        String contact = txtContact.getText();
-        String dob = txtDob.getValue().toString();
-        String gender = cmbGender.getValue().toString();
-
-        if (name.trim().length() == 0 || address.trim().length() == 0 || contact.trim().length() == 0 || dob.trim().length() == 0 || gender.trim().length() == 0) {
+        if (txtName.getText().trim().length() >0 && txtAddress.getText().trim().length() >0 && txtContact.getText().trim().length() >0 && txtDob.getValue() != null && cmbGender.getValue() !=null) {
+            if (btnSave.getText().equals("Save")) {
+                try {
+                    String id = txtId.getText().trim();
+                    String name = txtName.getText();
+                    String address = txtAddress.getText();
+                    String contact = txtContact.getText();
+                    String dob = txtDob.getValue().toString();
+                    String gender = cmbGender.getValue();
+                    boolean flag = studentBO.addStudent(new StudentDTO(id, name, address, contact, dob, gender));
+                    if (flag) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Student Saved!", ButtonType.OK).show();
+                        btnNewOnAction(event);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
+                }
+            } else {
+                StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
+                try {
+                    boolean b = studentBO.updateStudent(new StudentDTO(selectedItem.getId(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtDob.getValue().toString(), cmbGender.getValue()));
+                    if (b) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Student Updated!", ButtonType.OK).show();
+                        btnNewOnAction(event);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
+                }
+            }
+            loadAllStudent();
+        }else {
             new Alert(Alert.AlertType.ERROR, " Fields can not be empty", ButtonType.OK).show();
         }
-
-        if (btnSave.getText().equals("Save")) {
-            try {
-                boolean flag = studentBO.addStudent(new StudentDTO(id, name, address, contact, dob, gender));
-                if (flag) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Student Saved!", ButtonType.OK).show();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
-            }
-            btnNewOnAction(event);
-        } else {
-            StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
-            try {
-                boolean b = studentBO.updateStudent(new StudentDTO(selectedItem.getId(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtDob.getValue().toString(), cmbGender.getValue().toString()));
-                if (b) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Student Updated!", ButtonType.OK).show();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
-            }
-            btnNewOnAction(event);
-        }
-        loadAllStudent();
     }
 
     @FXML
@@ -208,9 +203,12 @@ public class StudentFormController {
             StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();
 
             try {
-                studentBO.deleteStudent(selectedItem.getId());
-                tblStudent.getItems().remove(selectedItem);
-                tblStudent.getSelectionModel().clearSelection();
+                boolean b = studentBO.deleteStudent(selectedItem.getId());
+                if (b){
+                    new Alert(Alert.AlertType.CONFIRMATION,"Deleted!",ButtonType.OK).show();
+                    tblStudent.getItems().remove(selectedItem);
+                    tblStudent.getSelectionModel().clearSelection();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();

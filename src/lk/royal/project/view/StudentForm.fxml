@@ -56,7 +56,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXDatePicker fx:id="txtDob" defaultColor="BLACK" layoutX="230.0" layoutY="165.0" prefHeight="25.0" prefWidth="228.0" promptText="Date_of_Birth" />
+      <JFXDatePicker fx:id="txtDob" defaultColor="BLACK" layoutX="230.0" layoutY="165.0" prefHeight="25.0" prefWidth="228.0" promptText="Date_of_Birth">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXDatePicker>
       <JFXComboBox fx:id="cmbGender" layoutX="474.0" layoutY="165.0" prefHeight="25.0" prefWidth="244.0" promptText="Gender" />
    </children>
 </AnchorPane>

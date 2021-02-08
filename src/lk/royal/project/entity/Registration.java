@@ -1,20 +1,17 @@
 package lk.royal.project.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Registration implements SuperEntity{
     @Id
     private
     String regId;
-    private String redDate;
-    private double regFee;
-    @OneToOne
+    private String redDate;    private double regFee;
+    @ManyToOne( fetch = FetchType.LAZY)
     private
     Student student;
-    @OneToOne
+    @ManyToOne( fetch = FetchType.LAZY)
     private
     Course course;
 
