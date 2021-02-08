@@ -21,19 +21,28 @@
          </font>
       </Label>
       <Separator layoutX="27.0" layoutY="93.0" prefHeight="3.0" prefWidth="724.0" />
-      <TextField fx:id="txtUserName" layoutX="316.0" layoutY="204.0" prefHeight="53.0" prefWidth="370.0" />
+      <TextField fx:id="txtUserName" layoutX="316.0" layoutY="204.0" onAction="#txtUserNameOnAction" prefHeight="53.0" prefWidth="370.0">
+         <font>
+            <Font size="23.0" />
+         </font></TextField>
       <Label alignment="CENTER_RIGHT" layoutX="98.0" layoutY="204.0" prefHeight="53.0" prefWidth="183.0" text="User Name">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <TextField fx:id="txtOldPassword" layoutX="316.0" layoutY="281.0" prefHeight="53.0" prefWidth="370.0" />
+      <TextField fx:id="txtOldPassword" layoutX="316.0" layoutY="281.0" onAction="#txtOldPasswordOnAction" prefHeight="53.0" prefWidth="370.0">
+         <font>
+            <Font size="23.0" />
+         </font></TextField>
       <Label alignment="CENTER_RIGHT" layoutX="98.0" layoutY="281.0" prefHeight="53.0" prefWidth="183.0" text="Old Password">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNewPassword" layoutX="316.0" layoutY="356.0" prefHeight="53.0" prefWidth="370.0" />
+      <TextField fx:id="txtNewPassword" layoutX="316.0" layoutY="356.0" onAction="#txtNewPasswordOnAction" prefHeight="53.0" prefWidth="370.0">
+         <font>
+            <Font size="23.0" />
+         </font></TextField>
       <Label alignment="CENTER_RIGHT" layoutX="83.0" layoutY="356.0" prefHeight="53.0" prefWidth="198.0" text="New Password">
          <font>
             <Font size="29.0" />

@@ -20,4 +20,9 @@ public class LoginBOImpl implements LoginBO {
         Login login = dao.find(id);
         return new LoginDTO(login.getUserName(),login.getPassword());
     }
+
+    @Override
+    public boolean updatePassword(LoginDTO dto) throws Exception {
+        return dao.update(new Login(dto.getUserName(),dto.getPassword()));
+    }
 }

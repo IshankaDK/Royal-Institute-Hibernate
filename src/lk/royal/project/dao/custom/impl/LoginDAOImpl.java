@@ -29,7 +29,15 @@ public class LoginDAOImpl implements LoginDAO {
 
     @Override
     public boolean update(Login entity) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        session.update(entity);
+
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
