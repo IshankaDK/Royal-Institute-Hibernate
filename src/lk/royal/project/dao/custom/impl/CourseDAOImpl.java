@@ -2,11 +2,9 @@ package lk.royal.project.dao.custom.impl;
 
 import lk.royal.project.dao.custom.CourseDAO;
 import lk.royal.project.entity.Course;
-import lk.royal.project.entity.Student;
 import lk.royal.project.factory.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.NativeQuery;
 
 import java.util.List;
 

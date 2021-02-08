@@ -13,6 +13,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import lk.royal.project.bo.BOFactory;
 import lk.royal.project.bo.BOType;
 import lk.royal.project.bo.custom.impl.CourseBOImpl;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class RegistrationFormController {
 
@@ -148,22 +150,31 @@ public class RegistrationFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        String regId = txtRegId.getText();
-        String regDate = txtRegDate.getValue().toString();
-        double fee = Double.parseDouble(txtRegFee.getText());
-        StudentDTO studentDTO = new StudentDTO(txtId.getText(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtDob.getText(), txtGender.getText());
-        CourseDTO courseDTO = new CourseDTO(cmbCourseCode.getValue(), txtCourseName.getText(), Double.parseDouble(txtCourseFee.getText()), txtCourseDuration.getText());
-
         try {
+            String regId = txtRegId.getText();
+            String regDate = txtRegDate.getValue().toString();
+            double fee = Double.parseDouble(txtRegFee.getText());
+            StudentDTO studentDTO = new StudentDTO(txtId.getText(), txtName.getText(), txtAddress.getText(), txtContact.getText(), txtDob.getText(), txtGender.getText());
+            CourseDTO courseDTO = new CourseDTO(cmbCourseCode.getValue(), txtCourseName.getText(), Double.parseDouble(txtCourseFee.getText()), txtCourseDuration.getText());
+
             boolean flag = bo.addRegistration(new RegistrationDTO(regId, regDate, fee, studentDTO, courseDTO));
             if (flag) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Student Saved!", ButtonType.OK).show();
+                btnNewOnAction(event);
             }
+        }catch (NumberFormatException e) {
+//                e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Field Empty!",ButtonType.OK).show();
+            txtCourseFee.requestFocus();
+            txtRegFee.requestFocus();
+        }catch (NullPointerException e) {
+//            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR,"Field Empty!",ButtonType.OK).show();
+            txtRegFee.requestFocus();
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Failed..!", ButtonType.OK).show();
         }
-        btnNewOnAction(event);
     }
 
     @FXML
@@ -241,5 +252,12 @@ public class RegistrationFormController {
     }
 
     public void txtRegFeeOnAction(ActionEvent actionEvent) {
+        if(Pattern.compile("^[0-9]{1,}$").matcher(txtRegFee.getText().trim()).matches()){
+            txtRegFee.setFocusColor(Paint.valueOf("skyblue"));
+            btnSaveOnAction(actionEvent);
+        }else {
+            txtRegFee.setFocusColor(Paint.valueOf("red"));
+            txtRegFee.requestFocus();
+        }
     }
 }

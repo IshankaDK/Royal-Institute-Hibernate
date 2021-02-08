@@ -10,7 +10,7 @@ public class Course implements SuperEntity {
     private String courseName;
     private double fee;
     private String duration;
-    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course"/*,cascade = CascadeType.ALL*/)
     private List<Registration> registration;
 
     public Course(String code, String courseName, double fee, String duration, List<Registration> registration) {
