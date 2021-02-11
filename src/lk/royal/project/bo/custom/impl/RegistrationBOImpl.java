@@ -3,7 +3,6 @@ package lk.royal.project.bo.custom.impl;
 import lk.royal.project.bo.custom.RegistrationBO;
 import lk.royal.project.dao.DAOFactory;
 import lk.royal.project.dao.DAOType;
-import lk.royal.project.dao.custom.RegistrationDAO;
 import lk.royal.project.dao.custom.impl.RegistrationDAOImpl;
 import lk.royal.project.dto.CourseDTO;
 import lk.royal.project.dto.RegistrationDTO;

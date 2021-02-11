@@ -20,9 +20,10 @@ public class QueryDAOImpl implements QueryDAO {
         Transaction transaction = session.beginTransaction();
         Query sqlQuery = session.createNativeQuery("SELECT DISTINCT s.id,s.name,s.address,s.contact,s.dob,s.gender FROM Student s,Registration r,Course c " +
                 "WHERE (c.code=r.course_code && s.id = r.student_id) && c.code = :id");
+//        Query query = session.createQuery("SELECT s FROM Student s  join fetch s.registration");
         sqlQuery.setParameter("id", id);
 
-        List<Object> resultList = (List<Object>) sqlQuery.getResultList();
+        List<Student> resultList = (List<Student>) sqlQuery.getResultList();
 
         transaction.commit();
         session.close();
@@ -39,7 +40,7 @@ public class QueryDAOImpl implements QueryDAO {
             String sGender = String.valueOf(obj[5]);
             studentList.add(new Student(sId, sName, sAddress, sContact, sDob, sGender));
         }
-//        System.out.println(studentList);
+        System.out.println(studentList);
         return studentList;
     }
 

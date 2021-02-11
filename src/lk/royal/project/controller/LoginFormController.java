@@ -1,6 +1,8 @@
 package lk.royal.project.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,38 +30,56 @@ public class LoginFormController {
     private PasswordField pswPassword;
 
     @FXML
+    public TextField txtPassword;
+    @FXML
     private JFXButton btnLogin;
 
     @FXML
     private Hyperlink hprRegister;
 
     @FXML
-    private ImageView imgEye;
+    public JFXCheckBox checkBox;
 
 
     LoginBOImpl bo = BOFactory.getInstance().getBO(BOType.LOGIN);
+
+    public void initialize() {
+        txtPassword.setVisible(false);
+
+        checkBox.selectedProperty().addListener((observable, oldValue, newValue) ->{
+            if (checkBox.isSelected()){
+                txtPassword.setText(pswPassword.getText());
+                txtPassword.setVisible(true);
+                pswPassword.setVisible(false);
+                return;
+            }
+            pswPassword.setText(txtPassword.getText());
+            pswPassword.setVisible(true);
+            txtPassword.setVisible(false);
+        } );
+    }
 
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
 
         try {
             String userName = txtUserName.getText().trim();
-            if (userName.length()>0 && pswPassword.getText().trim().length()>0){
+            if (userName.length() > 0 && pswPassword.getText().trim().length() > 0) {
                 LoginDTO login = bo.getLogin(userName);
-                if (login.getPassword().equals(pswPassword.getText().trim())){
+                if (login.getPassword().equals(pswPassword.getText().trim())) {
                     Stage stage = (Stage) root.getScene().getWindow();
                     stage.setTitle("DashBoard Form");
                     stage.centerOnScreen();
                     stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/lk/royal/project/view/DashBoardForm.fxml"))));
-                }else {
-                    new Alert(Alert.AlertType.ERROR,"User Name Password does not match!", ButtonType.OK).show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "User Name Password does not match!", ButtonType.OK).show();
                 }
-            }else {
-                new Alert(Alert.AlertType.WARNING,"Enter UserName and Password", ButtonType.OK).show();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Enter UserName and Password", ButtonType.OK).show();
             }
         } catch (Exception e) {
 //            e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR,"Login Failed!, Try Again!", ButtonType.OK).show();
+            new Alert(Alert.AlertType.ERROR, "Login Failed!, Try Again!", ButtonType.OK).show();
         }
     }
 
@@ -72,10 +92,6 @@ public class LoginFormController {
 
     }
 
-    @FXML
-    void ingEyeOnAction(MouseEvent event) {
-
-    }
 
     @FXML
     void pswPasswordOnAction(ActionEvent event) throws IOException {
@@ -98,4 +114,5 @@ public class LoginFormController {
             txtUserName.requestFocus();
         }
     }
+
 }

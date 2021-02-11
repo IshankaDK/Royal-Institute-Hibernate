@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -18,6 +19,11 @@
          <font>
             <Font size="30.0" />
          </font></TextField>
+      <TextField fx:id="txtPassword" layoutX="139.0" layoutY="227.0" prefHeight="62.0" prefWidth="411.0" promptText="Password">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </TextField>
       <PasswordField fx:id="pswPassword" layoutX="139.0" layoutY="227.0" onAction="#pswPasswordOnAction" prefHeight="62.0" prefWidth="411.0" promptText="Password">
          <font>
             <Font size="30.0" />
@@ -56,13 +62,18 @@
             <Image url="@../asset/icons8-user-male-90.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgEye" fitHeight="43.0" fitWidth="62.0" layoutX="496.0" layoutY="237.0" onMouseReleased="#ingEyeOnAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="62.0" fitWidth="53.0" layoutX="489.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../asset/icons8-eye-48.png" />
          </image>
+      </ImageView>
+      <JFXCheckBox fx:id="checkBox" checkedColor="WHITE" graphicTextGap="1.0" layoutX="507.0" layoutY="249.0" opacity="0.1" prefHeight="12.0" prefWidth="17.0" text="." unCheckedColor="WHITE">
+         <font>
+            <Font size="1.0" />
+         </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-      </ImageView>
+      </JFXCheckBox>
    </children>
 </AnchorPane>
