@@ -1,5 +1,8 @@
 package lk.royal.project.entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +16,7 @@ public class Student implements SuperEntity{
     private String dob;
     private String gender;
     @OneToMany(mappedBy = "student" ,cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Registration> registration;
 
     public Student(String id, String name, String address, String contact, String dob, String gender, List<Registration> registration) {
