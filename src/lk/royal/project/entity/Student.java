@@ -15,7 +15,7 @@ public class Student implements SuperEntity{
     private String contact;
     private String dob;
     private String gender;
-    @OneToMany(mappedBy = "student" ,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student" ,cascade = CascadeType.REMOVE)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Registration> registration;
 

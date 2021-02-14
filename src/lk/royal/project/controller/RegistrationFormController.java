@@ -159,7 +159,7 @@ public class RegistrationFormController {
 
             boolean flag = bo.addRegistration(new RegistrationDTO(regId, regDate, fee, studentDTO, courseDTO));
             if (flag) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Student Saved!", ButtonType.OK).show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Registration Saved!", ButtonType.OK).show();
                 btnNewOnAction(event);
             }
         }catch (NumberFormatException e) {

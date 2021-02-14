@@ -123,7 +123,7 @@ public class CourseFormController {
         txtCourseName.setDisable(false);
         txtFee.setDisable(false);
         txtDuration.setDisable(false);
-        txtCourseId.setText("CT");
+        txtCourseId.setText("CT0");
     }
 
     @FXML
@@ -226,6 +226,7 @@ public class CourseFormController {
         if(Pattern.compile("^[0-9 |A-z| ]{1,}$").matcher(txtDuration.getText().trim()).matches()){
             txtDuration.setFocusColor(Paint.valueOf("skyblue"));
             btnSaveOnAction(actionEvent);
+            txtCourseId.requestFocus();
         }else {
             txtDuration.setFocusColor(Paint.valueOf("red"));
             txtDuration.requestFocus();
